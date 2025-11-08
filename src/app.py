@@ -1,5 +1,10 @@
 import sys
-from src.desafios import eh_palindromo, intersecao_unica, soma_intervalos
+try:
+    # Preferred: run from project root with package imports
+    from src.desafios import eh_palindromo, intersecao_unica, soma_intervalos
+except ModuleNotFoundError:
+    # Fallback: allow running `python app.py` from inside the `src/` folder
+    from desafios import eh_palindromo, intersecao_unica, soma_intervalos
 
 def main():
     print("== Arena Copilot - Demo ==\n")
