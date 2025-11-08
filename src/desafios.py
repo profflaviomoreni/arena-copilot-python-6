@@ -39,6 +39,13 @@ def intersecao_unica(lista1: Iterable, lista2: Iterable) -> List:
 
 def soma_intervalos(intervalos: Iterable[Tuple[int,int]]) -> int:
     iv = list(intervalos)
+    # Aceita também um leve nesting: [[(a,b),(c,d)]] -> [(a,b),(c,d)]
+    # Detecta e faz flatten de um nível quando o primeiro (e único) elemento
+    # é uma sequência de tuplas-intervalo.
+    if len(iv) == 1 and isinstance(iv[0], (list, tuple)):
+        inner = iv[0]
+        if inner and all(isinstance(item, tuple) and len(item) == 2 for item in inner):
+            iv = list(inner)
     if not iv:
         return 0
     iv.sort(key=lambda x: x[0])
